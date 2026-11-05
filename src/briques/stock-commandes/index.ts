@@ -1,0 +1,2 @@
+export { PanneauStockCommandes } from "./PanneauStockCommandes";
+

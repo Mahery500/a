@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Couleurs issues du système centralisé (src/shared/theme), aucune valeur codée en dur */
+  --color-primary: var(--app-primary);
+  --color-primary-hover: var(--app-primary-hover);
+  --color-primary-active: var(--app-primary-active);
+  --color-secondary: var(--app-secondary);
+  --color-secondary-hover: var(--app-secondary-hover);
+
+  /* Palette ASINA dynamique */
+  --color-asina-50: var(--app-asina-50);
+  --color-asina-100: var(--app-asina-100);
+  --color-asina-200: var(--app-asina-200);
+  --color-asina-300: var(--app-asina-300);
+  --color-asina-400: var(--app-asina-400);
+  --color-asina-500: var(--app-asina-500);
+  --color-asina-600: var(--app-asina-600);
+  --color-asina-700: var(--app-asina-700);
+  --color-asina-800: var(--app-asina-800);
+  --color-asina-900: var(--app-asina-900);
+  --color-asina-950: var(--app-asina-950);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Base body typography & smooth rendering */
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular figures for medical data, timestamps & counts */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Classes utilitaires personnalisées utilisant les variables du thème centralisé */
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-weight: 600;
+  padding: 0.5rem 1.125rem;
+  border-radius: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: 0.8125rem;
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover-bg);
+  box-shadow: 0 4px 10px -2px var(--btn-primary-shadow);
+  transform: translateY(-0.5px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  font-weight: 600;
+  padding: 0.5rem 1.125rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--btn-secondary-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.8125rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover-bg);
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
+  transform: translateY(-0.5px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Animations for micro-interactions */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom delicate scrollbars for data tables */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   Écran de connexion — layout mobile uniquement
+   (aucune de ces classes n'a d'effet sur le layout desktop)
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* Fond vert menthe pastel de la maquette mobile. */
+.bg-medical-pattern {
+  background-color: #eaf3ed;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(30, 126, 68, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 144, 216, 0.05) 0%, transparent 40%);
+}
+
+/* Croix médicales flottantes en filigrane. */
+@keyframes ambientFloatLeft {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.45; }
+  50%      { transform: translateY(-10px) rotate(0.8deg); opacity: 0.65; }
+}
+@keyframes ambientFloatRight {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.55; }
+  50%      { transform: translateY(12px) rotate(-1deg); opacity: 0.75; }
+}
+.animate-ambient-float-left  { animation: ambientFloatLeft  9s  ease-in-out infinite; }
+.animate-ambient-float-right { animation: ambientFloatRight 11s ease-in-out infinite; }
+
+/* Entrée en cascade (logo → accroche → carte formulaire). */
+@keyframes entranceSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-entrance-1 { animation: entranceSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+.animate-entrance-2 { animation: entranceSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+.animate-entrance-3 { animation: entranceSlideUp 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both; }
+
+/* Soulignement animé du lien d'aide. */
+.animated-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.animated-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1.5px;
+  background-color: #1e7e44;
+  border-radius: 9999px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animated-link:hover::after,
+.animated-link:focus::after {
+  width: 100%;
+}
+
+/* Respect de la préférence système « réduire les animations ». */
+@media (prefers-reduced-motion: reduce) {
+  .animate-entrance-1,
+  .animate-entrance-2,
+  .animate-entrance-3 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-ambient-float-left,
+  .animate-ambient-float-right {
+    animation: none !important;
+  }
+  .animated-link::after {
+    transition: none !important;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   Croix décoratives — version visible
+   ═════════════════════════════════════════════════════════════════════ */
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0)     rotate(-4deg)  scale(0.92); }
+  50%      { transform: translateY(-50px) rotate(4deg)   scale(1.08); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 1; }
+}
+
+.animated-cross-1 {
+  animation:
+    floatSoft 6s ease-in-out infinite,
+    pulseSlow 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animated-cross-2 {
+  animation:
+    floatSoft 7s ease-in-out infinite 1.2s,
+    pulseSlow 5s ease-in-out infinite 0.6s;
+  will-change: transform, opacity;
+}
+
+.animated-cross-3 {
+  animation:
+    floatSoft 8s ease-in-out infinite 2.4s,
+    pulseSlow 6s ease-in-out infinite 1.2s;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-cross-1,
+  .animated-cross-2,
+  .animated-cross-3 {
+    animation: none !important;
+    opacity: 0.5 !important;
+    transform: none !important;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   Écran de connexion — entrée animée du formulaire (desktop)
+   ═════════════════════════════════════════════════════════════════════ */
+
+@keyframes entranceCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@keyframes entranceSlideLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes entranceSlideRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes entranceFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.animate-card-in {
+  animation: entranceCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-panel-left {
+  animation: entranceSlideLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animate-panel-right {
+  animation: entranceSlideRight 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* Cascade dans le formulaire */
+.animate-form-1 { animation: entranceFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.50s both; }
+.animate-form-2 { animation: entranceFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both; }
+.animate-form-3 { animation: entranceFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both; }
+.animate-form-4 { animation: entranceFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.80s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-card-in,
+  .animate-panel-left,
+  .animate-panel-right,
+  .animate-form-1,
+  .animate-form-2,
+  .animate-form-3,
+  .animate-form-4 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

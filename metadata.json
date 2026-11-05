@@ -1,0 +1,7 @@
+{
+  "name": "ASINA Medical",
+  "description": "Système Intégré de Santé au Travail et Gestion Clinique ASINA - Accueil, Infirmerie, Consultations, Pharmacie/Stock et File d'attente",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
